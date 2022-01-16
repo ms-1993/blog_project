@@ -1,0 +1,46 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title_tag %}
+    <title>Profile</title>
+    {% endblock %}
+
+{% block content %}
+<div class="container">
+
+<table class="table">
+   <tr>
+       <td> UserName {{ user.username }}</td>
+       <td> UserName {{ user.email }}</td>
+   </tr>
+</table>
+
+<a href="{% url 'post_create' %}" class="btn btn-primary">Create New Post</a>
+
+</div>
+    <div class="container-fluid">
+
+    <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8 mt-3 left">
+            {% for post in posts %}
+            <div class="card mb-4">
+            {% if post.image %}
+            <img class="card-img-top" src="{{ post.image.url | safe }}" alt="Card image cap">
+            {% endif %}
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.title | safe}}</h2>
+                    <p class="card-text text-muted h6">{{ post.author | safe }} | {{ post.created_on }} </p>
+                    <p class="card-text">{{post.content| safe }}</p>
+                    <a href="{% url 'post_detail' post.id  %}" class="btn btn-primary">Post Details &rarr;</a>
+                    <a href="{% url 'post_delete' post.id  %}" class="btn btn-primary">Delete Post</a>
+                    <a href="{% url 'post_update' post.id  %}" class="btn btn-primary">update Post</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+
+    </div>
+    </div>
+
+{% endblock content %}

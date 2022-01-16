@@ -1,0 +1,78 @@
+<!doctype html>
+
+<html class="no-js" lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Blog | Login and Register</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'Blog_app/ac/img/favicon.png' %}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'Blog_app/ac/css/bootstrap.min.css '%}">
+    <!-- Fontawesome CSS -->
+   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <!-- Flaticon CSS -->
+    <link rel=”stylesheet” href=”https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css”>
+    <!-- Google Web Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static 'Blog_app/ac/css/style.css' %}" rel="stylesheet">
+
+
+    {% block styles_block %}{% endblock %}
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div id="preloader" class="preloader">
+        <div class='inner'>
+            <div class='line1'></div>
+            <div class='line2'></div>
+            <div class='line3'></div>
+        </div>
+    </div>
+    <section class="fxt-template-animation fxt-blog" data-bg-image='{%  static "Blog_app/img/figure/bg24-l.jpg" %}'>
+        <!-- Video Area Start Here -->
+        <div class="fxt-video-background">
+            <div class="fxt-video">
+                <div id="fxtVideo" data-property="{
+                    videoURL:'F_7ZoAQ3aJM',
+                    autoPlay:true,
+                    mute:true,
+                    loop:true,
+                    startAt:0,
+                    opacity:1,
+                    quality:'default',
+                    showControls:false,
+                    optimizeDisplay:true,
+                    containment:'.fxt-video-background'
+                }">
+                </div>
+            </div>
+        </div>
+        <!-- Video Area Start Here -->
+     {% block content %}
+
+     {% endblock %}
+    </section>
+    <!-- jquery-->
+    <script src="{% static 'Blog_app/ac/js/jquery-3.5.0.min.js '%}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'Blog_app/ac/js/bootstrap.min.js '%}"></script>
+    <!-- Imagesloaded js -->
+    <script src="{% static 'Blog_app/ac/js/imagesloaded.pkgd.min.js '%}"></script>
+    <!-- YouTube js -->
+    <script src="{% static 'Blog_app/ac/js/jquery.mb.YTPlayer.min.js '%}"></script>
+    <!-- Validator js -->
+    <script src="{% static 'Blog_app/ac/js/validator.min.js '%}"></script>
+    <!-- Custom Js -->
+    <script src="{% static 'Blog_app/ac/js/main.js '%}"></script>
+
+</body>
+
+</html>

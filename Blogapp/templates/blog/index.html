@@ -1,0 +1,112 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title_tag %}
+    <title>Home</title>
+    {% endblock %}
+
+{% block content %}
+
+<style>
+    body {
+        font-family: "Roboto", sans-serif;
+        font-size: 18px;
+        background-color: #fdfdfd;
+    }
+
+    .head_text{
+        color: white;
+    }
+
+    .card{
+        box-shadow: 0 16px 48px #E3E7EB;
+    }
+
+.card-img-top {
+    flex-grow: 1;
+    object-fit:contain;
+}
+.card-body{
+    flex-grow:0;
+}
+
+</style>
+
+<header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-8 col-md-10 mx-auto">
+                <div class="site-heading">
+
+
+                    <h3 class=" site-heading my-4 mt-3 text-white">
+                     {% if user.is_authenticated %}
+                         <p>Welcome to my awesome Blog <p style="color: #0e28d0">{{ user.username }}</p></p>
+                        {% else %}
+                        Welcome to my awesome Blog
+                        {% endif %}
+                    </h3>
+                    <p class="text-light">I love to code...hope u do too as well!!! &nbsp
+                    </p>
+                </div>
+            </div>
+
+                <form class="form-inline" method="GET">
+            {{ filter.form }}
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+
+    </div>
+</header>
+
+
+
+<div class="container">
+    <div class="row">
+    <div class="col-10">
+            {% if filter %}
+        {% for post in filter.qs %}
+             <div class="card mb-4">
+            {% if post.image %}
+            <img class="card-img-top" src="{{ post.image.url }}" alt="Card image cap">
+            {% endif %}
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.title }}</h2>
+                    <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
+                    <p class="card-text">{{post.content| safe }}</p>
+                    <a href="{% url 'post_detail' post.id  %}" class="btn btn-primary">Read More &rarr;</a>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8 mt-3 left">
+            {% for post in post_list %}
+            <div class="card mb-4">
+            {% if post.image %}
+            <img class="card-img-top" src="{{ post.image.url | safe }}" alt="Card image cap">
+            {% endif %}
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.title | safe}}</h2>
+                    <p class="card-text text-muted h6">{{ post.author | safe}} | {{ post.created_on }} </p>
+                    <p class="card-text">{{post.content| safe}}</p>
+{#                    <p class="card-text">{{post.content|slice:":200" }}</p>#}
+                    <a href="{% url 'post_detail' post.id  %}" class="btn btn-primary">Read More &rarr;</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    {% endif %}
+    </div>
+<div class="col-2">
+
+        {% block sidebar %} {% include 'blog/sidebar.html' %} {% endblock sidebar %}
+</div>
+
+
+</div>
+{%endblock%}
